@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_popular_movie"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_gravity="fill"
+    android:layout_margin="6dp"
+    android:layout_marginTop="2dp">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_popular_movie"
+
+    <ImageView
+        android:id="@+id/iv_movie_poster"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="fill"
-        android:layout_margin="2dp"
-        card_view:cardCornerRadius="20dp">
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="Uma image"
+        android:scaleType="fitXY" />
 
-
-        <ImageView
-            android:id="@+id/iv_movie_poster"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:adjustViewBounds="false"
-            android:contentDescription="Uma image"
-            android:scaleType="fitXY"
-            card_view:srcCompat="@mipmap/ic_launcher" />
-
-
-
-
-    </android.support.v7.widget.CardView>
-
-</LinearLayout>
+</android.support.v7.widget.CardView>
