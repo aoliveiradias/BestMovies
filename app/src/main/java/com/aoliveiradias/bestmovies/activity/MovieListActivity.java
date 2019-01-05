@@ -1,6 +1,7 @@
 package com.aoliveiradias.bestmovies.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,13 +26,10 @@ import retrofit2.Response;
 
 public class MovieListActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    public static ProgressBar mLoadingIndicator;
-    private RetrofitConfig retrofitConfig = new RetrofitConfig();
+    private ProgressBar mLoadingIndicator;
+    private final RetrofitConfig retrofitConfig = new RetrofitConfig();
     private List<Movie> movieList = new ArrayList<>();
-    private static final String API_KEY = "YOUR_API_KEY_HERE";
+    private static final String API_KEY = "YOUR_API_KEY";
 
 
     @Override
@@ -65,20 +63,20 @@ public class MovieListActivity extends AppCompatActivity {
 
     private void getPopularMovies() {
         mLoadingIndicator.setVisibility(View.VISIBLE);
-        TheMoviedbService theMoviedbService = this.retrofitConfig.getTheMoviedbService();
-        Call<MovieResponse> moviesOrderByPolular = theMoviedbService.getMoviesOrderByPolular(API_KEY);
-        moviesOrderByPolular.enqueue(new Callback<MovieResponse>() {
+        TheMoviedbService theMoviedbService = this.retrofitConfig.getTheMovieDbService();
+        Call<MovieResponse> moviesOrderByPopular = theMoviedbService.getMoviesOrderByPopular(API_KEY);
+        moviesOrderByPopular.enqueue(new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                if (response.isSuccessful()) {
+            public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
                     movieList = response.body().getResults();
                     generateDataList();
                 }
             }
 
             @Override
-            public void onFailure(Call<MovieResponse> call, Throwable t) {
-                System.out.println(t);
+            public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable throwable) {
+                System.out.println(throwable);
             }
         });
         mLoadingIndicator.setVisibility(View.INVISIBLE);
@@ -87,12 +85,12 @@ public class MovieListActivity extends AppCompatActivity {
 
     private void getTopRatedMovies() {
         mLoadingIndicator.setVisibility(View.VISIBLE);
-        TheMoviedbService theMoviedbService = this.retrofitConfig.getTheMoviedbService();
-        Call<MovieResponse> moviesOrderByPolular = theMoviedbService.getMoviesOrderByTopRated(API_KEY);
-        moviesOrderByPolular.enqueue(new Callback<MovieResponse>() {
+        TheMoviedbService theMoviedbService = this.retrofitConfig.getTheMovieDbService();
+        Call<MovieResponse> moviesTopRated = theMoviedbService.getMoviesOrderByTopRated(API_KEY);
+        moviesTopRated.enqueue(new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                if (response.isSuccessful()) {
+            public void onResponse(@NonNull Call<MovieResponse> call, @NonNull Response<MovieResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
                     movieList = response.body().getResults();
                     generateDataList();
                 }
@@ -100,8 +98,8 @@ public class MovieListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<MovieResponse> call, Throwable t) {
-                System.out.println(t);
+            public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable throwable) {
+                System.out.println(throwable);
                 mLoadingIndicator.setVisibility(View.INVISIBLE);
             }
         });
@@ -110,13 +108,13 @@ public class MovieListActivity extends AppCompatActivity {
 
 
     private void generateDataList() {
-        mRecyclerView = findViewById(R.id.rv_movies);
+        RecyclerView mRecyclerView = findViewById(R.id.rv_movies);
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new GridLayoutManager(this, 2);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new MovieAdapter(movieList);
+        RecyclerView.Adapter mAdapter = new MovieAdapter(movieList);
         mRecyclerView.setAdapter(mAdapter);
     }
 }

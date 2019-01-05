@@ -1,6 +1,7 @@
 package com.aoliveiradias.bestmovies.adapter;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,14 +18,15 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> {
 
-    private List<Movie> mDataset;
+    private final List<Movie> movieList;
 
-    public MovieAdapter(List<Movie> myDataset) {
-        mDataset = myDataset;
+    public MovieAdapter(List<Movie> movieList) {
+        this.movieList = movieList;
     }
 
+    @NonNull
     @Override
-    public MovieAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+    public MovieAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
                                                         int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_movie_list, parent, false);
@@ -32,13 +34,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
-        Picasso.get().load("http://image.tmdb.org/t/p/w185/" + mDataset.get(position).getPosterPath()).into(holder.mPosterImageView);
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        Picasso.with(holder.itemView.getContext()).load("http://image.tmdb.org/t/p/w185/" + movieList.get(position).getPosterPath()).into(holder.mPosterImageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), MovieDetailActivity.class);
-                intent.putExtra("MOVIE", mDataset.get(position));
+                intent.putExtra("MOVIE", movieList.get(holder.getAdapterPosition()));
                 view.getContext().startActivity(intent);
             }
         });
@@ -46,7 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return movieList.size();
     }
 
 
@@ -54,7 +56,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         final CardView mPopularMovieCardView;
         final ImageView mPosterImageView;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
             mPopularMovieCardView = itemView.findViewById(R.id.cv_popular_movie);
             mPosterImageView = itemView.findViewById(R.id.iv_movie_poster);

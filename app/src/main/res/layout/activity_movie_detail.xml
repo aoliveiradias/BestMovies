@@ -13,7 +13,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="4dp"
-            android:text="TextView"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -21,7 +20,8 @@
             android:id="@+id/ivMoviePoster"
             android:layout_width="match_parent"
             android:layout_height="205dp"
-            tools:src="@tools:sample/avatars[0]" />
+            tools:src="@tools:sample/avatars[0]"
+            android:contentDescription="@string/mv_poster_content_description" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +34,8 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:paddingRight="2dp"
-                android:text="Release Date:"
+                android:paddingLeft="2dp"
+                android:text="@string/release_date"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -44,7 +45,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="4dp"
-                android:text="TextView"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -55,22 +55,22 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvVoteAvarageTitle"
+                android:id="@+id/tvVoteAverageTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:paddingRight="2dp"
-                android:text="Vote Avarage:"
+                android:paddingLeft="2dp"
+                android:text="@string/vote_average"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvVoteAvarage"
+                android:id="@+id/tvVoteAverage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="4dp"
-                android:text="TextView"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -86,7 +86,8 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp"
                 android:paddingRight="2dp"
-                android:text="Popularity:"
+                android:paddingLeft="2dp"
+                android:text="@string/popularity"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -96,7 +97,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="4dp"
-                android:text="TextView"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -108,7 +108,6 @@
             android:layout_gravity="center"
             android:lineSpacingExtra="8sp"
             android:padding="4dp"
-            android:text="TextView"
             android:textSize="18sp"
             android:textStyle="bold" />
 

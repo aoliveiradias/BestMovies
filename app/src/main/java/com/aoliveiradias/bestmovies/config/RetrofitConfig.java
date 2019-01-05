@@ -16,7 +16,7 @@ public class RetrofitConfig {
                 .build();
     }
 
-    public TheMoviedbService getTheMoviedbService() {
+    public TheMoviedbService getTheMovieDbService() {
         return this.retrofit.create(TheMoviedbService.class);
     }
 }

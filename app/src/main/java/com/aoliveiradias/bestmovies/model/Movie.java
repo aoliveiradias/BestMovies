@@ -10,31 +10,31 @@ public class Movie implements Parcelable {
 
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private final Integer id;
 
     @SerializedName("vote_average")
     @Expose
-    private String voteAverage;
+    private final String voteAverage;
 
     @SerializedName("title")
     @Expose
-    private String title;
+    private final String title;
 
     @SerializedName("overview")
     @Expose
-    private String overview;
+    private final String overview;
 
     @SerializedName("poster_path")
     @Expose
-    private String posterPath;
+    private final String posterPath;
 
     @SerializedName("release_date")
     @Expose
-    private String releaseDate;
+    private final String releaseDate;
 
     @SerializedName("popularity")
     @Expose
-    private String popularity;
+    private final String popularity;
 
     public Movie(Integer id, String voteAverage, String title, String overview, String posterPath, String releaseDate, String popularity) {
         this.id = id;
@@ -46,7 +46,7 @@ public class Movie implements Parcelable {
         this.popularity = popularity;
     }
 
-    public Movie(Parcel parcel) {
+    private Movie(Parcel parcel) {
         id = parcel.readInt();
         voteAverage = parcel.readString();
         title = parcel.readString();
@@ -55,10 +55,6 @@ public class Movie implements Parcelable {
         releaseDate = parcel.readString();
         popularity = parcel.readString();
 
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getVoteAverage() {

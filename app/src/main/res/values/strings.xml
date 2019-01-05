@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BestMovies</string>
+    <string name="vote_average">Vote Average:</string>
+    <string name="popularity">Popularity:</string>
+    <string name="release_date">Release Date:</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="mv_poster_content_description">Is a image of movie poster</string>
 </resources>

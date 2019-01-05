@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="4dp"
         android:adjustViewBounds="false"
-        android:contentDescription="Uma image"
+        android:contentDescription="@string/mv_poster_content_description"
         android:scaleType="fitXY" />
 
 </android.support.v7.widget.CardView>
