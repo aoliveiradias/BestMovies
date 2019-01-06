@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.aoliveiradias.bestmovies.R;
 import com.aoliveiradias.bestmovies.adapter.MovieAdapter;
@@ -71,15 +72,16 @@ public class MovieListActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     movieList = response.body().getResults();
                     generateDataList();
+                    mLoadingIndicator.setVisibility(View.INVISIBLE);
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable throwable) {
-                System.out.println(throwable);
+                mLoadingIndicator.setVisibility(View.INVISIBLE);
+                Toast.makeText(MovieListActivity.this, "Error on fetching movies! Try again!", Toast.LENGTH_SHORT).show();
             }
         });
-        mLoadingIndicator.setVisibility(View.INVISIBLE);
     }
 
 
@@ -99,8 +101,8 @@ public class MovieListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<MovieResponse> call, @NonNull Throwable throwable) {
-                System.out.println(throwable);
                 mLoadingIndicator.setVisibility(View.INVISIBLE);
+                Toast.makeText(MovieListActivity.this, "Error on fetching movies! Try again!", Toast.LENGTH_SHORT).show();
             }
         });
 
