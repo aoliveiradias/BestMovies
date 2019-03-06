@@ -9,7 +9,7 @@ Android application which shows information about the movies. It contains title,
 
 For running this application you have to keep your api key provided by the themoviedb in the projects change on MovieListActivity.java the string API_KEY to you api key.
 
-##Library Used
+### Library Used
 
 1. [Piccaso](http://square.github.io/picasso/) for caching and dowloading the image from the web.
 2. [Retrofit](http://square.github.io/retrofit/) version 2.5 for fetching data from the web
